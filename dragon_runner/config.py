@@ -1,7 +1,7 @@
 import json
 import os
 from typing                     import Dict, List
-from dragon_runner.test         import Test
+from dragon_runner.testfile     import TestFile
 from dragon_runner.errors       import ConfigError, Verifiable, ErrorCollection
 from dragon_runner.toolchain    import ToolChain
 
@@ -71,7 +71,7 @@ def load_config(file_path: str) -> Config:
         config_data = json.load(config_file)
     return Config(config_data)
 
-def gather_tests(test_dir: str) -> List[Test]:
+def gather_tests(test_dir: str) -> List[TestFile]:
     """
     Recursively gather all test files in the specified directory.
     A test file is any file that doesn't end with '.out' or '.ins'.
@@ -82,7 +82,7 @@ def gather_tests(test_dir: str) -> List[Test]:
             if not file.endswith(('.out', '.ins')):             
                 test_path = os.path.join(root, file)
                 #try:
-                tests.append(Test(test_path))
+                tests.append(TestFile(test_path))
                 #except:
                 #    print("Bad test: ", test_path)
     return tests
