@@ -62,7 +62,7 @@ def print_diff(diff):
     print("")
 
 
-def log_result(test: Test, did_pass: bool):
+def log_result(test: TestFile, did_pass: bool):
     if did_pass:
         log(Fore.GREEN + "  [PASS] " + Fore.RESET + test.stem)
     else:

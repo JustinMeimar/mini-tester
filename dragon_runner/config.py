@@ -4,6 +4,7 @@ from typing                     import Dict, List
 from dragon_runner.testfile     import TestFile
 from dragon_runner.errors       import ConfigError, Verifiable, ErrorCollection
 from dragon_runner.toolchain    import ToolChain
+from dragon_runner.utils        import resolve_path
 
 class Executable(Verifiable):
     def __init__(self, **kwargs):
@@ -30,7 +31,7 @@ class Executable(Verifiable):
 
 class Config:
     def __init__(self, config_data: Dict):
-        self.test_dir       = config_data['testDir']
+        self.test_dir       = resolve_path(config_data['testDir'])
         self.executables    = self.parse_executables(config_data['executables'])
         self.toolchains     = self.parse_toolchains(config_data['toolchains'])
         self.errors         = self.verify()
