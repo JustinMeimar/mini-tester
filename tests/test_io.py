@@ -1,7 +1,5 @@
 import pytest
-import tempfile
 import os
-import json
 from dragon_runner.testfile import TestFile
 from dragon_runner.config import gather_tests 
 
